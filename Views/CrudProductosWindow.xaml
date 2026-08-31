@@ -1,0 +1,153 @@
+<Window x:Class="AppSoftConsola.Views.CrudProductosWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:AppSoftConsola.Views"
+        Title="Administrar Productos"
+        Height="600" Width="900"
+        Background="#0B1220"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI">
+
+    <!-- Recursos globales -->
+    <Window.Resources>
+        <local:EmptyToVisibilityConverter x:Key="EmptyToVisibilityConverter"/>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- LISTADO (IZQUIERDA) -->
+        <Border Background="#0F172A" BorderBrush="#111827" BorderThickness="1" CornerRadius="8" Padding="10" Margin="0,0,10,0">
+            <StackPanel>
+
+                <TextBlock Text="PRODUCTOS"
+                           Foreground="#E5E7EB"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Margin="0,0,0,10"/>
+
+                <Grid Margin="0,0,0,10">
+                    <TextBox x:Name="txtBuscar"
+                             Height="34"
+                             Padding="6"
+                             Background="#111827"
+                             Foreground="#E5E7EB"
+                             BorderBrush="#1F2937"
+                             BorderThickness="1"
+                             TextChanged="txtBuscar_TextChanged"/>
+
+                    <TextBlock Text="Buscar descripción..."
+                               Foreground="#9CA3AF"
+                               Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               IsHitTestVisible="False"
+                               Visibility="{Binding Text, ElementName=txtBuscar,
+                                            Converter={StaticResource EmptyToVisibilityConverter}}"/>
+                </Grid>
+
+                <Border Padding="6" Margin="0,0,0,5" Background="Transparent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Código" Grid.Column="0" Background="Transparent" Foreground="#2563EB" FontWeight="Bold" BorderThickness="0" Padding="0" VerticalAlignment="Center" Click="OrdenarCodigo"/>
+                        <Button Content="Descripción" Grid.Column="1" Background="Transparent" Foreground="#2563EB" FontWeight="Bold" BorderThickness="0" Padding="0" VerticalAlignment="Center" Click="OrdenarDescripcion"/>
+                        <Button Content="Precio" Grid.Column="2" Background="Transparent" Foreground="#2563EB" FontWeight="Bold" BorderThickness="0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Right" Click="OrdenarPrecio"/>
+                        <Button Content="Orden" Grid.Column="3" Background="Transparent" Foreground="#2563EB" FontWeight="Bold" BorderThickness="0" Padding="0" VerticalAlignment="Center" HorizontalAlignment="Center" Click="OrdenarOrden"/>
+                    </Grid>
+                </Border>
+
+                <ListBox x:Name="lstProductos" Background="#0F172A" Foreground="#E5E7EB" BorderThickness="0" Height="450" SelectionChanged="lstProductos_SelectionChanged">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="0" />
+                            <Setter Property="Margin" Value="0" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#111827" BorderThickness="0,0,0,1" Padding="6" Margin="0" Background="Transparent">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding Code}" Grid.Column="0" Foreground="#60A5FA" FontSize="16" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Description}" Grid.Column="1" Foreground="#E5E7EB" FontSize="16" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Amount, StringFormat='${0:N2}'}" Grid.Column="2" Foreground="#34D399" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="{Binding OrderShow}" Grid.Column="3" Foreground="#9CA3AF" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+            </StackPanel>
+        </Border>
+
+        <!-- FORMULARIO (DERECHA) -->
+        <Border Grid.Column="1" Background="#0F172A" BorderBrush="#111827" BorderThickness="1" CornerRadius="8" Padding="16">
+            <StackPanel>
+                <!-- Details framed box (higher contrast) -->
+                <Border Background="#0B1220" BorderBrush="#2B6CB0" BorderThickness="1.5" CornerRadius="6" Padding="12" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="DETALLES" Foreground="#E5E7EB" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,8"/>
+
+                        <Grid Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Código:" Foreground="#9CA3AF" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,4,10,4" FontSize="16"/>
+                    <Border Style="{StaticResource FieldBorderStyle}" Grid.Row="0" Grid.Column="1" Margin="0,6,0,6">
+                        <TextBox x:Name="txtCode" Style="{StaticResource InnerFieldTextBox}" Height="36" Foreground="#60A5FA" PreviewTextInput="NumericInteger_PreviewTextInput" DataObject.Pasting="IntegerPasting" FontSize="16" FontWeight="SemiBold"/>
+                    </Border>
+
+                    <TextBlock Text="Descripción:" Foreground="#9CA3AF" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,4,10,4" FontSize="16"/>
+                    <Border Style="{StaticResource FieldBorderStyle}" Grid.Row="1" Grid.Column="1" Margin="0,6,0,6">
+                        <TextBox x:Name="txtDesc" Style="{StaticResource InnerFieldTextBox}" Height="36"/>
+                    </Border>
+
+                    <TextBlock Text="Precio:" Foreground="#9CA3AF" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,4,10,4" FontSize="16"/>
+                    <Border Style="{StaticResource FieldBorderStyle}" Grid.Row="2" Grid.Column="1" Margin="0,6,0,6">
+                        <TextBox x:Name="txtAmount" Style="{StaticResource InnerFieldTextBox}" Height="36" Foreground="#34D399" HorizontalContentAlignment="Right" PreviewTextInput="NumericDecimal_PreviewTextInput" DataObject.Pasting="DecimalPasting"/>
+                    </Border>
+
+                    <TextBlock Text="Orden:" Foreground="#9CA3AF" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,4,10,4" FontSize="16"/>
+                    <Border Style="{StaticResource FieldBorderStyle}" Grid.Row="3" Grid.Column="1" Margin="0,6,0,6">
+                        <TextBox x:Name="txtOrder" Style="{StaticResource InnerFieldTextBox}" Height="36" Foreground="#9CA3AF" PreviewTextInput="NumericInteger_PreviewTextInput" DataObject.Pasting="IntegerPasting"/>
+                    </Border>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,6,0,0">
+                    <Button Content="Agregar" Width="90" Margin="0,0,8,0" Click="Agregar_Click" Background="#2563EB" Foreground="White" BorderThickness="0"/>
+                    <Button Content="Guardar" Width="90" Margin="0,0,8,0" Click="Guardar_Click" Background="#059669" Foreground="White" BorderThickness="0"/>
+                    <Button Content="Eliminar" Width="90" Click="Eliminar_Click" Background="#DC2626" Foreground="White" BorderThickness="0"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+
+</Window>
