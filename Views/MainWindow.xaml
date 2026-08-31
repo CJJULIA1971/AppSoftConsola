@@ -271,7 +271,7 @@
                                            Foreground="#4ADE80"
                                            FontSize="16"
                                            FontWeight="Bold"
-                                           Margin="0,0,70,0"/>
+                                           Margin="0,0,50,0"/>
 
                                 <TextBlock Text="Electrónico:"
                                            Foreground="White"

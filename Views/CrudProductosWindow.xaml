@@ -118,22 +118,22 @@
 
                     <TextBlock Text="Código:" Foreground="#9CA3AF" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,4,10,4" FontSize="16"/>
                     <Border Style="{StaticResource FieldBorderStyle}" Grid.Row="0" Grid.Column="1" Margin="0,6,0,6">
-                        <TextBox x:Name="txtCode" Style="{StaticResource InnerFieldTextBox}" Height="36" Foreground="#60A5FA" PreviewTextInput="NumericInteger_PreviewTextInput" DataObject.Pasting="IntegerPasting" FontSize="16" FontWeight="SemiBold"/>
+                        <TextBox x:Name="txtCode" Style="{StaticResource InnerFieldTextBox}" Cursor="IBeam" Height="36" Foreground="#60A5FA" PreviewTextInput="NumericInteger_PreviewTextInput" DataObject.Pasting="IntegerPasting" FontSize="16" FontWeight="SemiBold"/>
                     </Border>
 
-                    <TextBlock Text="Descripción:" Foreground="#9CA3AF" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,4,10,4" FontSize="16"/>
+                    <TextBlock Text="Descripción:" Foreground="#9CA3AF" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,4,10,4"  FontSize="16"/>
                     <Border Style="{StaticResource FieldBorderStyle}" Grid.Row="1" Grid.Column="1" Margin="0,6,0,6">
-                        <TextBox x:Name="txtDesc" Style="{StaticResource InnerFieldTextBox}" Height="36"/>
+                        <TextBox x:Name="txtDesc" Style="{StaticResource InnerFieldTextBox}" Cursor="IBeam" Height="36"/>
                     </Border>
 
                     <TextBlock Text="Precio:" Foreground="#9CA3AF" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,4,10,4" FontSize="16"/>
                     <Border Style="{StaticResource FieldBorderStyle}" Grid.Row="2" Grid.Column="1" Margin="0,6,0,6">
-                        <TextBox x:Name="txtAmount" Style="{StaticResource InnerFieldTextBox}" Height="36" Foreground="#34D399" HorizontalContentAlignment="Right" PreviewTextInput="NumericDecimal_PreviewTextInput" DataObject.Pasting="DecimalPasting"/>
+                        <TextBox x:Name="txtAmount" Style="{StaticResource InnerFieldTextBox}" Cursor="IBeam" Height="36" Foreground="#34D399" HorizontalContentAlignment="Right" PreviewTextInput="NumericDecimal_PreviewTextInput" DataObject.Pasting="DecimalPasting"/>
                     </Border>
 
                     <TextBlock Text="Orden:" Foreground="#9CA3AF" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,4,10,4" FontSize="16"/>
                     <Border Style="{StaticResource FieldBorderStyle}" Grid.Row="3" Grid.Column="1" Margin="0,6,0,6">
-                        <TextBox x:Name="txtOrder" Style="{StaticResource InnerFieldTextBox}" Height="36" Foreground="#9CA3AF" PreviewTextInput="NumericInteger_PreviewTextInput" DataObject.Pasting="IntegerPasting"/>
+                        <TextBox x:Name="txtOrder" Style="{StaticResource InnerFieldTextBox}" Cursor="IBeam" Height="36" Foreground="#9CA3AF" PreviewTextInput="NumericInteger_PreviewTextInput" DataObject.Pasting="IntegerPasting"/>
                     </Border>
                         </Grid>
                     </StackPanel>
