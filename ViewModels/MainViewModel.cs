@@ -7,16 +7,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using AppSoftConsola.Models;
 
-
-
-
-
 namespace AppSoftConsola.ViewModels
 {
-
-  
-
-
     public class MainViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -102,9 +94,6 @@ namespace AppSoftConsola.ViewModels
         private void CargarParametros()
         {
 
-
-
-
             string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Data","pos10.db");
 
             using (var conn = new SQLiteConnection($"Data Source={dbPath};Version=3;"))
@@ -129,7 +118,12 @@ namespace AppSoftConsola.ViewModels
             OnPropertyChanged(nameof(TicketNro));
         }
 
-        private void CargarTotalesCaja()
+        public void RecargarParametros()
+        {
+            CargarParametros();   // ← llama al método que ya existe
+        }
+
+        public void CargarTotalesCaja()
         {
             using (var conn = new SQLiteConnection($"Data Source={GetDbPath()};Version=3;"))
             {
@@ -309,5 +303,8 @@ namespace AppSoftConsola.ViewModels
         {
             Console.WriteLine($"Ticket impreso con medio: {medio}");
         }
+
+        
+
     }
 }
