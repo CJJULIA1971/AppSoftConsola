@@ -1,0 +1,163 @@
+﻿<Window x:Class="AppSoftConsola.Views.ParametrosWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Parámetros del Sistema"
+        Height="700" Width="500"
+        Background="#F5F7FA"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI">
+
+    <Border Background="White"
+            CornerRadius="12"
+            Padding="20"
+            BorderBrush="#E5E7EB"
+            BorderThickness="1"
+            Margin="20">
+
+        <!-- ⭐ Scroll para que nunca se corte -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+            <StackPanel>
+
+                <!-- Título -->
+                <TextBlock Text="PARÁMETROS DEL SISTEMA"
+                           Foreground="#1F2937"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           Margin="0,0,0,20"
+                           HorizontalAlignment="Center"/>
+
+                <!-- Campo genérico -->
+                <StackPanel>
+                    <TextBlock Text="Punto de Venta"
+                               Foreground="#2563EB"
+                               FontWeight="Bold"
+                               FontSize="12"/>
+                    <Border Background="White"
+                            BorderBrush="#D1D5DB"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Margin="0,3,0,12">
+                        <TextBox x:Name="txtPAPuntoVenta"
+                                 Height="32"
+                                 Padding="6"
+                                 FontSize="14"
+                                 Background="Transparent"
+                                 BorderThickness="0"/>
+                    </Border>
+                </StackPanel>
+              
+                <StackPanel>
+                    <TextBlock Text="Puerto USB"
+                               Foreground="#2563EB"
+                               FontWeight="Bold"
+                               FontSize="12"/>
+                    <Border Background="White"
+                            BorderBrush="#D1D5DB"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Margin="0,3,0,12">
+                        <TextBox x:Name="txtPAPortUSB"
+                                 Height="32"
+                                 Padding="6"
+                                 FontSize="14"
+                                 Background="Transparent"
+                                 BorderThickness="0"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Línea 1 del Ticket"
+                               Foreground="#2563EB"
+                               FontWeight="Bold"
+                               FontSize="12"/>
+                    <Border Background="White"
+                            BorderBrush="#D1D5DB"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Margin="0,3,0,12">
+                        <TextBox x:Name="txtPANameTicketLine1"
+                                 Height="32"
+                                 Padding="6"
+                                 FontSize="14"
+                                 Background="Transparent"
+                                 BorderThickness="0"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Línea 2 del Ticket"
+                               Foreground="#2563EB"
+                               FontWeight="Bold"
+                               FontSize="12"/>
+                    <Border Background="White"
+                            BorderBrush="#D1D5DB"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Margin="0,3,0,12">
+                        <TextBox x:Name="txtPANameTicketLine2"
+                                 Height="32"
+                                 Padding="6"
+                                 FontSize="14"
+                                 Background="Transparent"
+                                 BorderThickness="0"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel>
+                    <TextBlock Text="Nombre del Comercio"
+                               Foreground="#2563EB"
+                               FontWeight="Bold"
+                               FontSize="12"/>
+                    <Border Background="White"
+                            BorderBrush="#D1D5DB"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Margin="0,3,0,12">
+                        <TextBox x:Name="txtPANombreComercio"
+                                 Height="32"
+                                 Padding="6"
+                                 FontSize="14"
+                                 Background="Transparent"
+                                 BorderThickness="0"/>
+                    </Border>
+                </StackPanel>
+            
+
+                <!-- Botones -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+
+                    <Button Content="Cancelar"
+                            Width="100" Height="36"
+                            Margin="0,0,10,0"
+                            Background="#6B7280"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="Cancelar_Click"/>
+
+                    <Button Content="Guardar"
+                            Width="100" Height="36"
+                            Margin="0,0,10,0"
+                            Background="#059669"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="Guardar_Click"/>
+
+                    <Button Content="Inicializar"
+                            Width="100" Height="36"
+                            Margin="0,0,10,0"
+                            Background="#DC2626"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Click="Inicializar_Click"/>   
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+    </Border>
+
+</Window>

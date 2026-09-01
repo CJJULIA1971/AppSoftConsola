@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="clr-namespace:AppSoftConsola.ViewModels"
-        Title="AppSoftConsola - Punto de Venta"
+        Title="InnovaStyl POS"
+        Icon="pack://application:,,,/Assets/ISLOGO.ico"
         Height="900" Width="1500"
         Background="#0F172A"
         WindowStartupLocation="CenterScreen"
@@ -78,42 +79,61 @@
                         </ItemsControl>
                     </ScrollViewer>
 
-                    <!-- ⭐ BOTONES DE ADMINISTRACIÓN -->
-                    <StackPanel Grid.Row="2"
-                    Orientation="Horizontal"
-                    Margin="0,15,0,0"
-                    HorizontalAlignment="Left">
+                    <!-- ⭐ BOTONES DE ADMINISTRACIÓN + ROLE A LA DERECHA -->
+                    <Grid Grid.Row="2" Margin="0,15,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
-                        <Button Content="PRODUCTOS"
-                    Width="150" Height="40"
-                    Margin="0,0,10,0"
-                    Background="#3BA9F5"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    Click="OpenCrudProductos"/>
+                        <!-- ⭐ BOTONES A LA IZQUIERDA -->
+                        <StackPanel Orientation="Horizontal"
+                Grid.Column="0"
+                HorizontalAlignment="Left">
 
-                        <Button Content="PARÁMETROS"
-                    Width="150" Height="40"
-                    Margin="0,0,10,0"
-                    Background="#0284C7"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    Click="OpenParametros"/>
+                            <Button x:Name="btnProductos"
+                Content="PRODUCTOS"
+                Width="150" Height="40"
+                Margin="0,0,10,0"
+                Background="#3BA9F5"
+                Foreground="White"
+                FontWeight="Bold"
+                BorderThickness="0"
+                Cursor="Hand"
+                Click="OpenCrudProductos"/>
 
-                        <Button Content="ADMIN"
-                    Width="150" Height="40"
-                    Background="#64748B"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    BorderThickness="0"
-                    Cursor="Hand"
-                    Click="OpenAdminLogin"/>
-                    </StackPanel>
+                            <Button x:Name="btnParametros"
+                Content="PARÁMETROS"
+                Width="150" Height="40"
+                Margin="0,0,10,0"
+                Background="#0284C7"
+                Foreground="White"
+                FontWeight="Bold"
+                BorderThickness="0"
+                Cursor="Hand"
+                Click="OpenParametros"/>
 
+                            <Button x:Name="btnAdmin"
+                Content="ADMIN"
+                Width="150" Height="40"
+                Background="#64748B"
+                Foreground="White"
+                FontWeight="Bold"
+                BorderThickness="0"
+                Cursor="Hand"
+                Click="OpenAdminLogin"/>
+                        </StackPanel>
+
+                        <!-- ⭐ ROLE A LA DERECHA -->
+                        <TextBlock x:Name="txtRoleDisplay"
+               Grid.Column="1"
+               FontSize="18"
+               FontWeight="Bold"
+               Foreground="#2563EB"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"
+               Margin="0,0,20,0"/>
+                    </Grid>
 
                 </Grid>
             </Border>
@@ -252,7 +272,7 @@
                     </UniformGrid>
 
                     <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,5,0,0">
-                        <Button Content="TOTAL VENDIDO"
+                        <Button Content="VENDIDO"
                                 Command="{Binding ShowCashCommand}"
                                 Height="35" Margin="0,0,10,0"
                                 Background="#64748B" Foreground="White"

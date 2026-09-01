@@ -9,13 +9,14 @@ namespace AppSoftConsola.Views
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string text = value as string;
-            return string.IsNullOrWhiteSpace(text) ? Visibility.Visible : Visibility.Collapsed;
+            return string.IsNullOrWhiteSpace(value?.ToString())
+                ? Visibility.Visible
+                : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Binding.DoNothing;
+            throw new NotImplementedException();
         }
     }
 }

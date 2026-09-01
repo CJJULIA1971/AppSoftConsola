@@ -11,7 +11,8 @@ using System.Data.SQLite;
 
 namespace AppSoftConsola.Views
 {
-    public partial class CrudProductosWindow : Window
+
+     public partial class CrudProductosWindow : Window
     {
         private string dbPath = "Data/pos10.db";
         private List<Producto> productos = new List<Producto>();
@@ -49,6 +50,12 @@ namespace AppSoftConsola.Views
 
             MostrarLista(productos);
         }
+
+
+
+
+
+
 
         private void MostrarLista(IEnumerable<Producto> lista)
         {

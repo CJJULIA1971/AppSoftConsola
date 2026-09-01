@@ -1,0 +1,217 @@
+﻿<Window x:Class="AppSoftConsola.Views.CrudUsuariosWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Administrar Usuarios"
+        Height="600" Width="1200"
+        Background="#F5F7FA"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI">
+
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ============================
+             LISTA DE USUARIOS (IZQUIERDA)
+             ============================ -->
+        <Border Background="White"
+                CornerRadius="12"
+                Padding="20"
+                BorderBrush="#E5E7EB"
+                BorderThickness="1"
+                Margin="0,0,16,0">
+
+            <StackPanel>
+
+                <TextBlock Text="USUARIOS"
+                           Foreground="#1F2937"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Margin="0,0,0,20"/>
+
+                <!-- Encabezados -->
+                <Grid Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Usuario" Grid.Column="0"
+                               FontSize="14" Foreground="#2563EB" FontWeight="Bold"/>
+
+                    <TextBlock Text="Nombre" Grid.Column="1"
+                               FontSize="14" Foreground="#2563EB" FontWeight="Bold"/>
+
+                    <TextBlock Text="Apellido" Grid.Column="2"
+                               FontSize="14" Foreground="#2563EB" FontWeight="Bold"/>
+                </Grid>
+
+                <!-- Lista -->
+                <ListBox x:Name="lstUsuarios"
+                         Background="White"
+                         Foreground="#374151"
+                         BorderThickness="0"
+                         Height="450"
+                         SelectionChanged="lstUsuarios_SelectionChanged">
+
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Margin" Value="0"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <Border x:Name="ItemBorder"
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="#E5E7EB"
+                                                BorderThickness="0,0,0,1"
+                                                Padding="8">
+                                            <ContentPresenter/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ItemBorder" Property="Background" Value="#F3F4F6"/>
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="ItemBorder" Property="Background" Value="#DBEAFE"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding UserId}" Grid.Column="0"
+                                           Foreground="#2563EB" FontSize="16"
+                                           FontWeight="SemiBold"/>
+
+                                <TextBlock Text="{Binding Nombre}" Grid.Column="1"
+                                           Foreground="#374151" FontSize="16"/>
+
+                                <TextBlock Text="{Binding Apellido}" Grid.Column="2"
+                                           Foreground="#374151" FontSize="16"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+            </StackPanel>
+        </Border>
+
+        <!-- ============================
+             CRUD (DERECHA)
+             ============================ -->
+        <Border Grid.Column="1"
+                Background="White"
+                CornerRadius="12"
+                Padding="20"
+                BorderBrush="#E5E7EB"
+                BorderThickness="1">
+
+            <StackPanel>
+
+                <TextBlock Text="DETALLES"
+                           Foreground="#1F2937"
+                           FontSize="24"
+                           FontWeight="Bold"
+                           Margin="0,0,0,20"/>
+
+                <!-- UserId -->
+                <TextBlock Text="Usuario" Foreground="#2563EB" FontWeight="Bold" FontSize="14"/>
+                <Border Background="White" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="8" Margin="0,4,0,12">
+                    <TextBox x:Name="txtUserId"
+                             Height="36"
+                             Padding="8"
+                             FontSize="16"
+                             Background="Transparent"
+                             BorderThickness="0"/>
+                </Border>
+
+                <!-- Nombre -->
+                <TextBlock Text="Nombre" Foreground="#2563EB" FontWeight="Bold" FontSize="14"/>
+                <Border Background="White" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="8" Margin="0,4,0,12">
+                    <TextBox x:Name="txtNombre"
+                             Height="36"
+                             Padding="8"
+                             FontSize="16"
+                             Background="Transparent"
+                             BorderThickness="0"/>
+                </Border>
+
+                <!-- Apellido -->
+                <TextBlock Text="Apellido" Foreground="#2563EB" FontWeight="Bold" FontSize="14"/>
+                <Border Background="White" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="8" Margin="0,4,0,12">
+                    <TextBox x:Name="txtApellido"
+                             Height="36"
+                             Padding="8"
+                             FontSize="16"
+                             Background="Transparent"
+                             BorderThickness="0"/>
+                </Border>
+
+                <!-- Password -->
+                <TextBlock Text="Password" Foreground="#2563EB" FontWeight="Bold" FontSize="14"/>
+                <Border Background="White" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="8" Margin="0,4,0,12">
+                    <PasswordBox x:Name="txtPassword"
+                                 Height="36"
+                                 Padding="8"
+                                 FontSize="16"
+                                 Background="Transparent"
+                                 BorderThickness="0"/>
+                </Border>
+
+                <!-- Role -->
+                <TextBlock Text="Role" Foreground="#2563EB" FontWeight="Bold" FontSize="14"/>
+                <Border Background="White" BorderBrush="#D1D5DB" BorderThickness="1" CornerRadius="8" Margin="0,4,0,20">
+                    <ComboBox x:Name="cmbRole"
+                              Height="36"
+                              Padding="8"
+                              FontSize="16"
+                              Background="Transparent"
+                              BorderThickness="0">
+                        <ComboBoxItem Content="ADMIN"/>
+                        <ComboBoxItem Content="USER"/>
+                    </ComboBox>
+                </Border>
+
+                <!-- Botones -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Agregar" Width="100" Margin="0,0,10,0"
+                            Background="#2563EB" Foreground="White"
+                            BorderThickness="0" Height="36"
+                            Click="Agregar_Click"/>
+
+                    <Button Content="Guardar" Width="100" Margin="0,0,10,0"
+                            Background="#059669" Foreground="White"
+                            BorderThickness="0" Height="36"
+                            Click="Guardar_Click"/>
+
+                    <Button Content="Eliminar" Width="100"
+                            Background="#DC2626" Foreground="White"
+                            BorderThickness="0" Height="36"
+                            Click="Eliminar_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+
+</Window>
