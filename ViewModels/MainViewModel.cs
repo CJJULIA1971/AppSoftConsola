@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AppSoftConsola.Models;
+using AppSoftConsola.Services;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.SQLite;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using AppSoftConsola.Models;
 
 namespace AppSoftConsola.ViewModels
 {
@@ -298,13 +299,42 @@ namespace AppSoftConsola.ViewModels
             OnPropertyChanged(nameof(ItemsCount));
             OnPropertyChanged(nameof(Total));
         }
-              
         private void ImprimirTicket(string medio)
         {
-            Console.WriteLine($"Ticket impreso con medio: {medio}");
+            // 1) Cargar parámetros desde SQLite
+            string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "pos10.db");
+            var repo = new ParametersRepository($"Data Source={dbPath};Version=3;");
+            var parametros = repo.Load();
+
+            // 2) Datos del ticket
+            string ptoVtaFormatted = PtoVta.ToString("0000");
+            string ticketNroFormatted = TicketNro.ToString("00000000");
+            DateTime fechaHora = DateTime.Now;
+
+            // 3) Encabezado del ticket desde PrinterParameters (con fallback)
+            string comercio = parametros.PANombreComercio ?? "Mi Comercio";
+            string cuit = parametros.PACUIT ?? "CUIT: 00-00000000-0";
+            string direccion = parametros.PADireccionFull ?? "Dirección: Calle Falsa 123";
+            string line1 = parametros.PATicketLine1 ?? "";
+            string line2 = parametros.PATicketLine2 ?? "";
+            string line3 = parametros.PATicketLine3 ?? "";
+
+            // 4) Imprimir ticket final
+            ThermalTicketPrinter.PrintReceipt(
+                comercio,
+                cuit,
+                direccion,
+                ptoVtaFormatted,
+                ticketNroFormatted,
+                fechaHora,
+                Carrito.ToList(),
+                Total,
+                medio,
+                line1,
+                line2,
+                line3
+            );
         }
-
-        
-
     }
 }
+
