@@ -59,6 +59,9 @@ namespace AppSoftConsola.Views
 
                 using (var conn = new SQLiteConnection($"Data Source={dbPath};Version=3;"))
                 {
+
+                  
+
                     conn.Open();
 
                     string query = "SELECT PasswordHash, RoleHash FROM TblUsers WHERE UserId=@id";

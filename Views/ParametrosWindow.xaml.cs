@@ -29,7 +29,7 @@ namespace AppSoftConsola.Views
                     if (reader.Read())
                     {
                         txtPAPuntoVenta.Text = reader["PAPuntoVenta"].ToString();
-                        txtPAPortUSB.Text = reader["PAPortUSB"].ToString();
+                        txtPAPrinterName.Text = reader["PAPrinterName"].ToString();
                         txtPANameTicketLine1.Text = reader["PANameTicketLine1"].ToString();
                         txtPANameTicketLine2.Text = reader["PANameTicketLine2"].ToString();
                         txtPANombreComercio.Text = reader["PANombreComercio"].ToString();
@@ -47,7 +47,7 @@ namespace AppSoftConsola.Views
                 string query = @"
                 UPDATE TblParameters SET
                 PAPuntoVenta=@pv,
-                PAPortUSB=@usb,
+                PAPrinterName=@usb,
                 PANameTicketLine1=@l1,
                 PANameTicketLine2=@l2,
                 PANombreComercio=@nc                        
@@ -56,7 +56,7 @@ namespace AppSoftConsola.Views
                 using (var cmd = new SQLiteCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@pv", txtPAPuntoVenta.Text.Trim());
-                    cmd.Parameters.AddWithValue("@usb", txtPAPortUSB.Text.Trim());
+                    cmd.Parameters.AddWithValue("@usb", txtPAPrinterName.Text.Trim());
                     cmd.Parameters.AddWithValue("@l1", txtPANameTicketLine1.Text.Trim());
                     cmd.Parameters.AddWithValue("@l2", txtPANameTicketLine2.Text.Trim());
                     cmd.Parameters.AddWithValue("@nc", txtPANombreComercio.Text.Trim());                                      

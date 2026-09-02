@@ -48,7 +48,7 @@
                 </StackPanel>
               
                 <StackPanel>
-                    <TextBlock Text="Puerto USB"
+                    <TextBlock Text="Nombre de la Impresora"
                                Foreground="#2563EB"
                                FontWeight="Bold"
                                FontSize="12"/>
@@ -57,7 +57,7 @@
                             BorderThickness="1"
                             CornerRadius="6"
                             Margin="0,3,0,12">
-                        <TextBox x:Name="txtPAPortUSB"
+                        <TextBox x:Name="txtPAPrinterName"
                                  Height="32"
                                  Padding="6"
                                  FontSize="14"
